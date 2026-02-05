@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-node-20260128152711EZHHXE">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v3.0.2">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="license" type="text/html" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<title>Registro datos y envío (POST y GET) | Data Logger con PHP y App Script</title>
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"> </script><link rel="stylesheet" href="../idevices/text/text.css">
+<link rel="stylesheet" href="../content/css/base.css">
+<script src="../theme/style.js"> </script><link rel="stylesheet" href="../theme/style.css">
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+</head>
+<body class="exe-export exe-web-site" lang="es">
+<script>document.body.className+=" js"</script><div class="exe-content exe-export pre-js siteNav-hidden"> <nav id="siteNav"> <ul> <li> <a href="../index.html" class="main-node no-ch">Introducción y objetivos</a>
+</li>
+<li class="active"> <a href="../html/registro-datos-y-envio-post-y-get.html" class="active daddy">Registro datos y envío (POST y GET)</a><ul> <li> <a href="../html/envio-datos-a-google-sheetss.html" class="no-ch">Envio datos a google sheetss</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/estructuras-almacenamiento-de-datos.html" class="daddy">Estructuras almacenamiento de datos</a><ul class="other-section"> <li> <a href="../html/bade-de-datos-mysql.html" class="no-ch">Bade de datos MySQL</a>
+</li>
+<li> <a href="../html/hoja-de-calculo-google-sheets.html" class="no-ch">Hoja de Cálculo Google Sheets</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/graficado-de-los-datos-php.html" class="no-ch">Graficado de los datos PHP</a>
+</li>
+<li> <a href="../html/graficado-en-google-sheets.html" class="no-ch">Graficado en Google Sheets</a>
+</li>
+<li> <a href="../html/interfaz-web-consulta-de-datos.html" class="no-ch">Interfaz web consulta de datos</a>
+</li>
+</ul></nav><main id="20260128152711EZHHXE" class="page"> <header id="header-20260128152711EZHHXE" class="main-header"> <div class="package-header">
+<h1 class="package-title">Data Logger con PHP y App Script</h1>
+<p class="package-subtitle">Registro y gestión de datos con PHP</p>
+</div>
+<div class="page-header"><h2 class="page-title">Registro datos y envío (POST y GET)</h2></div></header><div id="page-content-20260128152711EZHHXE" class="page-content"> <article id="20260128152711MSTMEB" class="box"> <header class="box-head no-icon"> <h1 class="box-title">Toma y envío de datos</h1>
+<button class="box-toggle box-toggle-on" title="Ocultar/Mostrar contenido"> <span>Ocultar/Mostrar contenido</span></button></header><div class="box-content"> <div id="20260125130842676MET" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json"><div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><h2>REGISTRO Y ENVÍO DE DATOS&nbsp;</h2>
+<p>PETICIONES GET Y POST</p>
+<p><img src="../content/resources/20260125130842676MET/infraestructura2.gif" width="650" height="218" alt=""></p>
+<p><br></p>
+<p>Nuestro punto de partida un sistema de control sensorizado, el cual queremos registrar y tener acceso en tiempo real a los datos. Normalmente, los sistemas de control que se usan a nivel educativo tienen el potencial de poder ofrecernos la información en tiempo real a través de un pequeño servidor Web que se puede gestionar en la propia placa, pero no tienen la capacidad de gestionar un histórico de datos debido a la escasez de memoria de almacenamiento, por ello, esta posibilidad no la vamos a considerar.</p>
+<p>Una vez que tenemos las variables con los datos que deseamos registrar, vamos a construir una URL para madar la información a nuestro servidor. Esa solicitud la vamos a hacer a través de un petición GET, es más fácil de enterder que la POST, y nos vale para la mayoría de los casos. Esta solicitud tiene la siguiente estructura: <a href="http://miDominio/mandaDatos.php?var1=dato1&var2=dato2">http://miDominio/mandaDatos.php?var1=dato1&var2=dato2</a>&nbsp;</p>
+<p>Se puede deducir que mandaDatos.php es un script que elaboraremos ad hoc, y que las variables var1,var2, ... son las variables con sus respectivos valores (numéricas o alfanumerícas). A esa URL se accederá co el bloque GET que montramos bajo estas líneas si trabajamos con Steamakersblocks.</p>
+<p><img src="../content/resources/20260125130842676MET/BHTTPServer.png" width="275" height="86" alt=""></p>
+<p>Si trabajamos con el entorno IDE de arduino, el código a insertar sería&nbsp; algo como lo que se muestra, una vez, claro esto, tenemos recopilados los datos y activada nuestra conexión WiFi.</p>
+<p><span style="font-family: 'courier new', courier, monospace;">#include <httpclient.h></httpclient.h></span></p>
+<p><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; HTTPClient http;<br>&nbsp; &nbsp; WiFiClient client;</span></p>
+<p><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; String url = "http://miDominio/mandaDatos.php?temperatura="+String(temp,2)+"&humedad="+String(humedad,1);</span><br><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; http.begin(client, url);</span></p>
+<p><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; int httpCode = http.GET(); &nbsp;// Realiza la petición</span></p>
+<p><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; http.end();</span><br><span style="font-family: 'courier new', courier, monospace;">&nbsp; }</span><br><span style="font-family: 'courier new', courier, monospace;">}</span><span style="font-family: 'courier new', courier, monospace;"></span><br></p>
+<p><span style="font-family: 'courier new', courier, monospace;">El script PHP para añadir los datos a nuestra base de datos será el siguiente.</span></p>
+<p><span style="font-family: 'courier new', courier, monospace;"><?php</span><br><span style="font-family: 'courier new', courier, monospace;">// Datos de conexión a la base de datos</span><br><span style="font-family: 'courier new', courier, monospace;">$servidor = "localhost";</span><br><span style="font-family: 'courier new', courier, monospace;">$usuario &nbsp;= "usuarioBD";</span><br><span style="font-family: 'courier new', courier, monospace;">$password = "passwordBD";</span><br><span style="font-family: 'courier new', courier, monospace;">$bd &nbsp; &nbsp; &nbsp; = "datalogger";</span></p>
+<p><span style="font-family: 'courier new', courier, monospace;">// Crear conexión</span><br><span style="font-family: 'courier new', courier, monospace;">$conn = new mysqli($servidor, $usuario, $password, $bd);</span></p>
+<p><span style="font-family: 'courier new', courier, monospace;">// Comprobar conexión</span><br><span style="font-family: 'courier new', courier, monospace;">if ($conn->connect_error) {</span><br><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; die("Error de conexión: " . $conn->connect_error);</span><br><span style="font-family: 'courier new', courier, monospace;">}</span></p>
+<p><span style="font-family: 'courier new', courier, monospace;">// Comprobar que llegan los datos por GET</span><br><span style="font-family: 'courier new', courier, monospace;">if (isset($_GET['temperatura']) && isset($_GET['humedad'])) {</span></p>
+<p><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; date_default_timezone_set('Europe/Madrid');</span><br><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; $fecha = date("Y-m-d H:i:s");</span></p>
+<p><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; $temperatura = $_GET['temperatura'];</span><br><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; $humedad &nbsp; &nbsp; = $_GET['humedad'];</span></p>
+<p><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; // Preparar la consulta (más seguro que usar INSERT directo)</span><br><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; $stmt = $conn->prepare(</span><br><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; "INSERT INTO registro1 (temperatura, humedad,fecha) VALUES (?,?,?)"</span><br><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; );</span><br><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; $stmt->bind_param("dd", $temperatura, $humedad,$fecha);</span></p>
+<p><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; if ($stmt->execute()) {</span><br><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; echo "Datos insertados correctamente";</span><br><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; } else {</span><br><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; echo "Error al insertar datos";</span><br><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; }</span></p>
+<p><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; $stmt->close();</span></p>
+<p><span style="font-family: 'courier new', courier, monospace;">} else {</span><br><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; echo "Faltan datos";</span><br><span style="font-family: 'courier new', courier, monospace;">}</span></p>
+<p><span style="font-family: 'courier new', courier, monospace;">$conn->close();</span><br><span style="font-family: 'courier new', courier, monospace;">?></span></p>
+<p><span style="font-family: 'courier new', courier, monospace;"></span><br></p><p class="clearfix"></p></div>
+            </div></div></div></div>
+</div></article>
+</div></main><div class="nav-buttons"> <a href="../index.html" title="Anterior" class="nav-button nav-button-left"> <span>Anterior</span></a><a href="../html/envio-datos-a-google-sheetss.html" title="Siguiente" class="nav-button nav-button-right"> <span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class="cc cc-by-sa"> <p> <span class="license-label">Licencia: </span><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="license">creative commons: attribution - share alike 4.0</a></p>
+</div>
+</div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(nueva ventana)</span></span></a></p>
+</body>
+</html>

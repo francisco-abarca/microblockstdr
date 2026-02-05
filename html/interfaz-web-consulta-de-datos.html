@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-node-20260128152711NSDPJI">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v3.0.2">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="license" type="text/html" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<title>Interfaz web consulta de datos | Data Logger con PHP y App Script</title>
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><script src="../libs/exe_math/tex-mml-svg.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"> </script><link rel="stylesheet" href="../idevices/text/text.css">
+<link rel="stylesheet" href="../content/css/base.css">
+<script src="../theme/style.js"> </script><link rel="stylesheet" href="../theme/style.css">
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+</head>
+<body class="exe-export exe-web-site" lang="es">
+<script>document.body.className+=" js"</script><div class="exe-content exe-export pre-js siteNav-hidden"> <nav id="siteNav"> <ul> <li> <a href="../index.html" class="main-node no-ch">Introducción y objetivos</a>
+</li>
+<li> <a href="../html/registro-datos-y-envio-post-y-get.html" class="daddy">Registro datos y envío (POST y GET)</a><ul class="other-section"> <li> <a href="../html/envio-datos-a-google-sheetss.html" class="no-ch">Envio datos a google sheetss</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/estructuras-almacenamiento-de-datos.html" class="daddy">Estructuras almacenamiento de datos</a><ul class="other-section"> <li> <a href="../html/bade-de-datos-mysql.html" class="no-ch">Bade de datos MySQL</a>
+</li>
+<li> <a href="../html/hoja-de-calculo-google-sheets.html" class="no-ch">Hoja de Cálculo Google Sheets</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/graficado-de-los-datos-php.html" class="no-ch">Graficado de los datos PHP</a>
+</li>
+<li> <a href="../html/graficado-en-google-sheets.html" class="no-ch">Graficado en Google Sheets</a>
+</li>
+<li class="active"> <a href="../html/interfaz-web-consulta-de-datos.html" class="active no-ch">Interfaz web consulta de datos</a>
+</li>
+</ul></nav><main id="20260128152711NSDPJI" class="page"> <header id="header-20260128152711NSDPJI" class="main-header"> <div class="package-header">
+<h1 class="package-title">Data Logger con PHP y App Script</h1>
+<p class="package-subtitle">Registro y gestión de datos con PHP</p>
+</div>
+<div class="page-header"><h2 class="page-title">Interfaz web consulta de datos</h2></div></header><div id="page-content-20260128152711NSDPJI" class="page-content"> <article id="20260128152711ABNPML" class="box"> <header class="box-head no-icon"> <h1 class="box-title">Interfaz web</h1>
+<button class="box-toggle box-toggle-on" title="Ocultar/Mostrar contenido"> <span>Ocultar/Mostrar contenido</span></button></header><div class="box-content"> <div id="20260128141621822LWQ" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json"><div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p>Una vez tenemos los datos almacenado en nuestra base de datos podremos consutar los datos a través de un interfaz de consulta. Una primera aproximación podría ser (advertirá que el código está poco optimizado pero es funcional).</p>
+<p><span style="font-family: terminal, monaco, monospace;"><!--?php</span--><span style="font-family: terminal, monaco, monospace;">?&gt;</span><br></span><span style="font-family: terminal, monaco, monospace;"><span style="font-family: terminal, monaco, monospace;">$USER='usuario base de datos';</span><br><span style="font-family: terminal, monaco, monospace;">$PASS='contraseña';</span><br><span style="font-family: terminal, monaco, monospace;">$base='practicas';</span><br><span style="font-family: terminal, monaco, monospace;">$link=mysqli_connect("localhost",$USER,$PASS);</span><br><span style="font-family: terminal, monaco, monospace;">mysqli_select_db ($link,"practicas");</span></span></p>
+<p><br><span style="font-family: terminal, monaco, monospace;">$fechaq= date("Y")."-".date("m")."-".date("d");</span><br><span style="font-family: terminal, monaco, monospace;">print "</span></p>
+<p>";<br><span style="font-family: terminal, monaco, monospace;">&nbsp;$datoqr="format(avg(temperatura),1),format(avg(humedad),0), format(avg(presion),0),format(avg(viento),0),format(sum(precipitacion),1),format(avg(racha),0)";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$cabeceragr="</span>";<br><span style="font-family: terminal, monaco, monospace;">}</span><br><span style="font-family: terminal, monaco, monospace;">else</span><br><span style="font-family: terminal, monaco, monospace;">print "Todas las variables\n";</span><br><span style="font-family: terminal, monaco, monospace;">if ($dato=="humedad")</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;{</span><br><span style="font-family: terminal, monaco, monospace;">print "humedad\n";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$datoq="fecha,hora,temperatura,humedad";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$cabecera="</span>";<br><span style="font-family: terminal, monaco, monospace;">&nbsp;$datoqr="format(avg(temperatura),1),format(avg(humedad),0)";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$cabeceragr="</span>";<br><span style="font-family: terminal, monaco, monospace;">}</span><br><span style="font-family: terminal, monaco, monospace;">else</span><br><span style="font-family: terminal, monaco, monospace;">print "Humedad\n";</span><br><span style="font-family: terminal, monaco, monospace;">if ($dato=="lluvia")</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;{</span><br><span style="font-family: terminal, monaco, monospace;">print "Precipitación\n";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$cabecera="</span>";<br><span style="font-family: terminal, monaco, monospace;">&nbsp;$datoq="fecha,hora,precipitacion";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$datoqr="format(sum(precipitacion),1)";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$cabeceragr="</span>";<br><span style="font-family: terminal, monaco, monospace;">}</span><br><span style="font-family: terminal, monaco, monospace;">else</span><br><span style="font-family: terminal, monaco, monospace;">print "Precipitación\n";</span><br><span style="font-family: terminal, monaco, monospace;">if ($dato=="presion")</span><br><span style="font-family: terminal, monaco, monospace;">{</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$cabecera="</span>";<br><span style="font-family: terminal, monaco, monospace;">print "Presión\n";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$datoq="fecha,hora,presion";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$datoqr="format(avg(presion),1)";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$cabeceragr="</span>";<br><span style="font-family: terminal, monaco, monospace;">}</span><br><span style="font-family: terminal, monaco, monospace;">else</span><br><span style="font-family: terminal, monaco, monospace;">print "Presión barométrica\n";</span><br><span style="font-family: terminal, monaco, monospace;">if ($dato=="viento")</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;{</span><br><span style="font-family: terminal, monaco, monospace;">print "Viento\n";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$cabecera="</span>";<br><span style="font-family: terminal, monaco, monospace;">&nbsp;$datoq="fecha,hora,viento";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$datoqr="format(avg(viento),1)";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$cabeceragr="</span>";<br><span style="font-family: terminal, monaco, monospace;">}</span><br><span style="font-family: terminal, monaco, monospace;">else</span><br><span style="font-family: terminal, monaco, monospace;">print "Viento\n";</span><br><span style="font-family: terminal, monaco, monospace;">if ($dato=="racha")</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;{</span><br><span style="font-family: terminal, monaco, monospace;">print "Viento\n";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$cabecera="</span>";<br><span style="font-family: terminal, monaco, monospace;">&nbsp;$datoq="fecha,hora,racha";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$datoqr="format(avg(racha),1)";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$cabeceragr="</span>";<br><span style="font-family: terminal, monaco, monospace;">}</span><br><span style="font-family: terminal, monaco, monospace;">else</span><br><span style="font-family: terminal, monaco, monospace;">print "Racha\n";</span><br><span style="font-family: terminal, monaco, monospace;">print "";</span><br><span style="font-family: terminal, monaco, monospace;">Print "&nbsp;&nbsp;&nbsp;Intervalo: ";</span><br><span style="font-family: terminal, monaco, monospace;">print "&lt;select name="rango" style="\"height:" 20px;font-family:="" verdana,="" arial,="" helvética;font-size:="" 11\"="" onchange="\"reload(this.form)\""&gt;";<br><span style="font-family: terminal, monaco, monospace;">if ($rango==1) { print "Hoy\n";</span><br><span style="font-family: terminal, monaco, monospace;">}</span><br><span style="font-family: terminal, monaco, monospace;">else</span><br><span style="font-family: terminal, monaco, monospace;">print "Hoy\n";</span><br><span style="font-family: terminal, monaco, monospace;">if ($rango==2)</span><br><span style="font-family: terminal, monaco, monospace;">print "Última semana\n";</span><br><span style="font-family: terminal, monaco, monospace;">else</span><br><span style="font-family: terminal, monaco, monospace;">print "Última semana\n";</span><br><span style="font-family: terminal, monaco, monospace;">if ($rango==3)</span><br><span style="font-family: terminal, monaco, monospace;">print "Último mes\n";</span><br><span style="font-family: terminal, monaco, monospace;">else</span><br><span style="font-family: terminal, monaco, monospace;">print "Último mes\n";</span><br><span style="font-family: terminal, monaco, monospace;">if ($rango==4)</span><br><span style="font-family: terminal, monaco, monospace;">print "Últimos 3 meses\n";</span><br><span style="font-family: terminal, monaco, monospace;">else</span><br><span style="font-family: terminal, monaco, monospace;">print "Últimos 3 meses\n";</span><br><span style="font-family: terminal, monaco, monospace;">if ($rango==5)</span><br><span style="font-family: terminal, monaco, monospace;">print "Todo el registro\n";</span><br><span style="font-family: terminal, monaco, monospace;">else</span><br><span style="font-family: terminal, monaco, monospace;">print "Todo el registro\n";</span><br><span style="font-family: terminal, monaco, monospace;">print "</span>";</span><br><span style="font-family: terminal, monaco, monospace;">print "&nbsp;&nbsp;Agrupación de datos: ";</span></p>
+<p><br></p>
+<p><br><span style="font-family: terminal, monaco, monospace;">print "&lt;select name="grupo" style="\"width:" 90px;="" height:="" 20px;font-family:="" verdana,="" arial,="" helvética;font-size:="" 11\"="" onchange="\"reload(this.form)\""&gt;";<br><span style="font-family: terminal, monaco, monospace;">if ($grupo==1) { print &nbsp;"Sin agrupar\n";</span><br><span style="font-family: terminal, monaco, monospace;">$grupoch="";</span><br><span style="font-family: terminal, monaco, monospace;">$order="";</span><br><span style="font-family: terminal, monaco, monospace;">}</span><br><span style="font-family: terminal, monaco, monospace;">else</span><br><span style="font-family: terminal, monaco, monospace;">print "Sin agrupar\n";</span><br><span style="font-family: terminal, monaco, monospace;">if ($grupo==2) { print "Diario\n";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$grupoch= "group by fecha";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$qb="fecha";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$order="desc";</span><br><span style="font-family: terminal, monaco, monospace;">}</span><br><span style="font-family: terminal, monaco, monospace;">else</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;print "Diario\n";</span><br><span style="font-family: terminal, monaco, monospace;">if ($grupo==3) {print "Semanal\n";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$grupoch= "group by round(datediff (fecha, \"$fechaq\")/7)";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$qb= "abs(round(datediff (fecha, \"$fechaq\")/7)) as semana";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$order="desc";</span><br><span style="font-family: terminal, monaco, monospace;">}</span><br><span style="font-family: terminal, monaco, monospace;">else</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;print "Semanal\n";</span><br><span style="font-family: terminal, monaco, monospace;">if ($grupo==4){ print "Mensual\n";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$grupoch= "group by left(fecha,7)";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$qb="left(fecha,7) as mes";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$order="desc";</span><br><span style="font-family: terminal, monaco, monospace;">}</span><br><span style="font-family: terminal, monaco, monospace;">else</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;print "Mensual\n";</span><br><span style="font-family: terminal, monaco, monospace;">if ($grupo==5) { print "Anual\n";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$grupoch= "group by left(fecha,4)";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$qb="left(fecha,4) as Año";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$order="desc";</span><br><span style="font-family: terminal, monaco, monospace;">}</span><br><span style="font-family: terminal, monaco, monospace;">else</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;print "Anual\n";</span><br><span style="font-family: terminal, monaco, monospace;">print "</span>";</span><br><span style="font-family: terminal, monaco, monospace;">print "</span></p>
+<p>";&nbsp;<br><span style="font-family: terminal, monaco, monospace;">$fecha= date("Y")."-".date("m")."-".date("d");</span><br><span style="font-family: terminal, monaco, monospace;">if ($rango==1) {</span><br><span style="font-family: terminal, monaco, monospace;">if ($grupo==1) $query = "SELECT $datoq FROM datosEstacion where fecha=\"$fecha\" order by id desc";</span><br><span style="font-family: terminal, monaco, monospace;">else</span><br><span style="font-family: terminal, monaco, monospace;">$query = "SELECT $qb,$datoqr FROM datosEstacion where fecha=\"$fecha\" $grupoch order by 1 $order";</span><br><span style="font-family: terminal, monaco, monospace;">}</span><br><span style="font-family: terminal, monaco, monospace;">if ($rango==2) {</span><br><span style="font-family: terminal, monaco, monospace;">$timestamp=date ("U") - 60*60*24*7;</span><br><span style="font-family: terminal, monaco, monospace;">$nuevo= getdate ($timestamp);</span><br><span style="font-family: terminal, monaco, monospace;">$fecha1 = $nuevo['year'].'-'.$nuevo['mon'].'-'.$nuevo['mday'];</span><br><span style="font-family: terminal, monaco, monospace;">if ($grupo==1) $query = "SELECT &nbsp;$datoq FROM datosEstacion where fecha between \"$fecha1\" and &nbsp;\"$fecha\" $grupoch order by id desc";</span><br><span style="font-family: terminal, monaco, monospace;">else</span><br><span style="font-family: terminal, monaco, monospace;">$query = "SELECT &nbsp;$qb,$datoqr FROM datosEstacion where fecha between \"$fecha1\" and &nbsp;\"$fecha\" $grupoch order by 1 $order";</span><br><span style="font-family: terminal, monaco, monospace;">}</span><br><span style="font-family: terminal, monaco, monospace;">if ($rango==3) {</span><br><span style="font-family: terminal, monaco, monospace;">$timestamp=date ("U") - 60*60*24*30;</span><br><span style="font-family: terminal, monaco, monospace;">$nuevo= getdate ($timestamp);</span><br><span style="font-family: terminal, monaco, monospace;">$fecha1 = $nuevo['year'].'-'.$nuevo['mon'].'-'.$nuevo['mday'];</span><br><span style="font-family: terminal, monaco, monospace;">if ($grupo==1) $query = "SELECT &nbsp;$datoq FROM datosEstacion where fecha between \"$fecha1\" and &nbsp;\"$fecha\" $grupoch order by 1 desc";</span><br><span style="font-family: terminal, monaco, monospace;">else</span><br><span style="font-family: terminal, monaco, monospace;">$query = "SELECT &nbsp;$qb,$datoqr FROM datosEstacion where fecha between \"$fecha1\" and &nbsp;\"$fecha\" $grupoch order by 1 $order";</span><br><span style="font-family: terminal, monaco, monospace;">}</span><br><span style="font-family: terminal, monaco, monospace;">if ($rango==4) {</span><br><span style="font-family: terminal, monaco, monospace;">$timestamp=date ("U") - 60*60*24*90;</span><br><span style="font-family: terminal, monaco, monospace;">$nuevo= getdate ($timestamp);</span><br><span style="font-family: terminal, monaco, monospace;">$fecha1 = $nuevo['year'].'-'.$nuevo['mon'].'-'.$nuevo['mday'];</span><br><span style="font-family: terminal, monaco, monospace;">if ($grupo==1) $query = "SELECT &nbsp;$datoq FROM datosEstacion where fecha between \"$fecha1\" and &nbsp;\"$fecha\" $grupoch order by id desc";</span><br><span style="font-family: terminal, monaco, monospace;">else</span><br><span style="font-family: terminal, monaco, monospace;">$query = "SELECT &nbsp;$qb,$datoqr FROM datosEstacion where fecha between \"$fecha1\" and &nbsp;\"$fecha\" $grupoch order by 1 $order";</span><br><span style="font-family: terminal, monaco, monospace;">}</span><br><span style="font-family: terminal, monaco, monospace;">if ($rango==5) {</span><br><span style="font-family: terminal, monaco, monospace;">if ($grupo==1) $query = "SELECT &nbsp;$datoq FROM datosEstacion order by id desc";</span><br><span style="font-family: terminal, monaco, monospace;">else</span><br><span style="font-family: terminal, monaco, monospace;">$query = "SELECT &nbsp;$qb,$datoqr FROM datosEstacion $grupoch order by 1 $order";</span></p>
+<p><br><span style="font-family: terminal, monaco, monospace;">}</span><br><span style="font-family: terminal, monaco, monospace;">$fechold=0;</span><br><span style="font-family: terminal, monaco, monospace;">//print "$query, $dato,$rango,$grupo";</span><br><span style="font-family: terminal, monaco, monospace;">$result = mysqli_query($link,$query) or die("Query failed $query");</span><br><span style="font-family: terminal, monaco, monospace;">print "</span></p>
+<table class="tituloheader" align="center" width="60%">
+<tbody>
+<tr>
+<td>";<br><span style="font-family: terminal, monaco, monospace;"><span style="font-family: terminal, monaco, monospace;">print "</span></span><form action="procesa.php" method="\&quot;GET\&quot;">";<br><span style="font-family: terminal, monaco, monospace;"><span style="font-family: terminal, monaco, monospace;">print "</span></span>
+<h2><span style="color: #000000;">Consulta de datos meteorológicos de la Estación SotoTech</span></h2>
+<span style="font-family: terminal, monaco, monospace;"><span style="color: #000000;">";</span></span><span style="color: #000000;"><span style="color: #000000;"><br><span style="font-family: terminal, monaco, monospace;">print "</span></span></span><hr 087021="" background-color:="" height:="" 5px=""><span style="color: #000000;"><span style="font-family: terminal, monaco, monospace;">";</span><br><span style="font-family: terminal, monaco, monospace;">$rango= $_GET['rango'];</span><br><span style="font-family: terminal, monaco, monospace;">$dato= $_GET['dato'];</span><br><span style="font-family: terminal, monaco, monospace;">$grupo= $_GET['grupo'];</span><br><span style="font-family: terminal, monaco, monospace;">print "Variable meteorológica: ";</span><br><span style="font-family: terminal, monaco, monospace;">if ($rango==0 || $rango=="") $rango=1;</span><br><span style="font-family: terminal, monaco, monospace;">if (strlen($dato)==0) $dato="todas";</span><br><span style="font-family: terminal, monaco, monospace;">if ($grupo==0 || $grupo=="") $grupo=1;</span><br><span style="font-family: terminal, monaco, monospace;">print "&lt;select name="dato" style="\"height:" 20px;font-family:="" verdana,="" arial,="" helvética;font-size:="" 11\"="" onchange="\"reload(this.form)\""&gt;";<br><span style="font-family: terminal, monaco, monospace;">if ($dato=="todas") { print "Todas la variables\n";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$datoq="fecha,hora,temperatura,humedad,presion,viento,precipitacion,racha";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$cabecera="</span></span></span></form></td>
+</tr>
+<tr>
+<td class="cabecera" width="15%">Fecha</td>
+<td class="cabecera" width="15%">Hora</td>
+<td class="cabecera" width="15%">Temperatura</td>
+<td class="cabecera" width="15%">Humedad</td>
+<td class="cabecera" width="20%">Presión</td>
+<td class="cabecera" width="20%">Viento</td>
+<td class="cabecera" width="20%">Lluvia</td>
+<td class="cabecera">Racha</td>
+</tr>
+<tr>
+<td class="cabecera" width="15%">Tiempo</td>
+<td class="cabecera" width="15%">Temperatura</td>
+<td class="cabecera" width="15%">Humedad</td>
+<td class="cabecera" width="20%">Presión</td>
+<td class="cabecera" width="20%">Viento</td>
+<td class="cabecera" width="20%">Lluvia</td>
+<td class="cabecera">Racha</td>
+</tr>
+<tr>
+<td class="cabecera" width="15%">Fecha</td>
+<td class="cabecera" width="15%">Hora</td>
+<td class="cabecera" width="15%">Temperatura</td>
+<td class="cabecera" width="15%">Humedad</td>
+</tr>
+<tr>
+<td class="cabecera" width="10">Tiempo</td>
+<td class="cabecera" width="30%">Temperatura media</td>
+<td class="cabecera" width="30%">Humedad media</td>
+</tr>
+<tr>
+<td class="cabecera" width="15%">Fecha</td>
+<td class="cabecera" width="15%">Hora</td>
+<td class="cabecera" width="15%">Lluvia</td>
+</tr>
+<tr>
+<td class="cabecera" width="10">Tiempo</td>
+<td class="cabecera" width="30%">Lluvia total</td>
+</tr>
+<tr>
+<td class="cabecera" width="15%">Fecha</td>
+<td class="cabecera" width="15%">Hora</td>
+<td class="cabecera" width="15%">Presión</td>
+</tr>
+<tr>
+<td class="cabecera" width="10">Tiempo</td>
+<td class="cabecera" width="30%">Presión media</td>
+</tr>
+<tr>
+<td class="cabecera" width="15%">Fecha</td>
+<td class="cabecera" width="15%">Hora</td>
+<td class="cabecera" width="15%">Viento</td>
+</tr>
+<tr>
+<td class="cabecera" width="10">Tiempo</td>
+<td class="cabecera" width="30%">Viento</td>
+</tr>
+<tr>
+<td class="cabecera" width="15%">Fecha</td>
+<td class="cabecera" width="15%">Hora</td>
+<td class="cabecera" width="15%">Racha</td>
+</tr>
+<tr>
+<td class="cabecera" width="10">Tiempo</td>
+<td class="cabecera" width="30%">Racha</td>
+</tr>
+</tbody>
+</table>
+<p>";<br><span style="font-family: terminal, monaco, monospace;">if ($grupo==1)</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;print "$cabecera";</span><br><span style="font-family: terminal, monaco, monospace;">else</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;print "$cabeceragr";</span><br><span style="font-family: terminal, monaco, monospace;">while ($line = mysqli_fetch_row($result)) {</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;print "</span>";<br><span style="font-family: terminal, monaco, monospace;">&nbsp;else {</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp; &nbsp;$fec=explode("-",$line[0]);</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp; &nbsp;$fecha=$fec[2]."/".$fec[1]."/".$fec[0];</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp; &nbsp;print "<span class="\&quot;event_month\&quot;">$fecha</span>";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;}</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; print "</span>";<br><span style="font-family: terminal, monaco, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; print "</span>";<br><span style="font-family: terminal, monaco, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; print "</span>";<br><span style="font-family: terminal, monaco, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; print "</span>";<br><span style="font-family: terminal, monaco, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; print "</span>";<br><span style="font-family: terminal, monaco, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; print "</span>";<br><span style="font-family: terminal, monaco, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; print "</span>";<br><span style="font-family: terminal, monaco, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; print "</span>";<br><span style="font-family: terminal, monaco, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; print "";</span></p>
+<p><br></p>
+<p><br><span style="font-family: terminal, monaco, monospace;">&nbsp;print "";</span><br><span style="font-family: terminal, monaco, monospace;">&nbsp;$fechold=$fech;</span><br><span style="font-family: terminal, monaco, monospace;">}</span><br><span style="font-family: terminal, monaco, monospace;">print "</span></p>
+<table align="center" class="bodynews">
+<tbody>
+<tr>
+<td>";<br><span style="font-family: terminal, monaco, monospace;">&nbsp;if ($grupo&gt;2) print "<span class="\&quot;event_month\&quot;">$line[0]</span></span></td>
+<td align="center"><span class="\&quot;event_month\&quot;">$line[1]</span></td>
+<td align="center"><span class="\&quot;event_month\&quot;">$line[2]</span></td>
+<td align="center"><span class="\&quot;event_month\&quot;">$line[3]</span></td>
+<td align="center"><span class="\&quot;event_month\&quot;">$line[4]</span></td>
+<td align="center"><span class="\&quot;event_month\&quot;">$line[5]</span></td>
+<td align="center"><span class="\&quot;event_month\&quot;">$line[6]</span></td>
+<td align="center"><span class="\&quot;event_month\&quot;">$line[7]</span></td>
+</tr>
+</tbody>
+</table>
+<p>";<br><span style="font-family: terminal, monaco, monospace;"><span style="font-family: terminal, monaco, monospace;">print "</span></span></p>
+<p>";&nbsp;<br><span style="font-family: terminal, monaco, monospace;">print "";</span></p><p class="clearfix"></p></div>
+            </div></div></div></div>
+</div></article>
+</div></main><div class="nav-buttons"> <a href="../html/graficado-en-google-sheets.html" title="Anterior" class="nav-button nav-button-left"> <span>Anterior</span></a><span class="nav-button nav-button-right" aria-hidden="true"> <span>Siguiente</span></span>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class="cc cc-by-sa"> <p> <span class="license-label">Licencia: </span><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="license">creative commons: attribution - share alike 4.0</a></p>
+</div>
+</div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(nueva ventana)</span></span></a></p>
+</body>
+</html>

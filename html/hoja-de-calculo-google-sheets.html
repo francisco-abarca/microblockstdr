@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-node-20260128152711YAXXUY">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v3.0.2">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="license" type="text/html" href="https://creativecommons.org/licenses/by-sa/4.0/">
+<title>Hoja de Cálculo Google Sheets | Data Logger con PHP y App Script</title>
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"> </script><link rel="stylesheet" href="../idevices/text/text.css">
+<link rel="stylesheet" href="../content/css/base.css">
+<script src="../theme/style.js"> </script><link rel="stylesheet" href="../theme/style.css">
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+</head>
+<body class="exe-export exe-web-site" lang="es">
+<script>document.body.className+=" js"</script><div class="exe-content exe-export pre-js siteNav-hidden"> <nav id="siteNav"> <ul> <li> <a href="../index.html" class="main-node no-ch">Introducción y objetivos</a>
+</li>
+<li> <a href="../html/registro-datos-y-envio-post-y-get.html" class="daddy">Registro datos y envío (POST y GET)</a><ul class="other-section"> <li> <a href="../html/envio-datos-a-google-sheetss.html" class="no-ch">Envio datos a google sheetss</a>
+</li>
+</ul>
+</li>
+<li class="current-page-parent"> <a href="../html/estructuras-almacenamiento-de-datos.html" class="daddy">Estructuras almacenamiento de datos</a><ul> <li> <a href="../html/bade-de-datos-mysql.html" class="no-ch">Bade de datos MySQL</a>
+</li>
+<li class="active"> <a href="../html/hoja-de-calculo-google-sheets.html" class="active no-ch">Hoja de Cálculo Google Sheets</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/graficado-de-los-datos-php.html" class="no-ch">Graficado de los datos PHP</a>
+</li>
+<li> <a href="../html/graficado-en-google-sheets.html" class="no-ch">Graficado en Google Sheets</a>
+</li>
+<li> <a href="../html/interfaz-web-consulta-de-datos.html" class="no-ch">Interfaz web consulta de datos</a>
+</li>
+</ul></nav><main id="20260128152711YAXXUY" class="page"> <header id="header-20260128152711YAXXUY" class="main-header"> <div class="package-header">
+<h1 class="package-title">Data Logger con PHP y App Script</h1>
+<p class="package-subtitle">Registro y gestión de datos con PHP</p>
+</div>
+<div class="page-header"><h2 class="page-title">Hoja de Cálculo Google Sheets</h2></div></header><div id="page-content-20260128152711YAXXUY" class="page-content"> <article id="20260128152711AEEGDJ" class="box"> <header class="box-head no-icon"> <h1 class="box-title">Google Sheets</h1>
+<button class="box-toggle box-toggle-on" title="Ocultar/Mostrar contenido"> <span>Ocultar/Mostrar contenido</span></button></header><div class="box-content"> <div id="20260125193547419IYA" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json"><div class="exe-text-template"><div class="textIdeviceContent">
+            <div class="exe-text-activity">
+                <div><p>En ese caso, vamos a crear una hoja de cálculo en google sheets desde el workspace de google.</p>
+<p>1. Crear el proyecto de Apps Script<br>Entra a <a href="https://script.google.com">https://script.google.com</a> Haz clic en Nuevo proyecto<br></p>
+<p>2. Escribir el script básico<br>En el archivo Code.gs, pega este ejemplo:</p>
+<p><span style="font-family: 'courier new', courier, monospace;">function doGet(e) {</span><br><span style="font-family: 'courier new', courier, monospace;">&nbsp; var ss = SpreadsheetApp.openById("ID_DE_TU_SHEET");</span><br><span style="font-family: 'courier new', courier, monospace;">&nbsp; var sheet = ss.getSheetByName("Datos");</span></p>
+<p><span style="font-family: 'courier new', courier, monospace;">&nbsp; sheet.appendRow([</span><br><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; new Date(),</span><br><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; e.parameter.temperatura,&nbsp; // o los nombres de las variables que hemos pasado por la URL.</span><br><span style="font-family: 'courier new', courier, monospace;">&nbsp; &nbsp; e.parameter.humedad</span><br><span style="font-family: 'courier new', courier, monospace;">&nbsp; ]);</span></p>
+<p><span style="font-family: 'courier new', courier, monospace;">&nbsp; return ContentService.createTextOutput("OK");</span><br><span style="font-family: 'courier new', courier, monospace;">}</span></p>
+<p><span style="font-family: 'courier new', courier, monospace;">Esto permite añadir datos accediendo a la URL</span></p>
+<p><span style="font-family: 'courier new', courier, monospace;"><a href="https://script.google.com/macros/s/ID/exec?temperatura=25&humedad=60">https://script.google.com/macros/s/ID/exec?temperatura=25&humedad=60</a></span></p>
+<p>3. Para obtener la URL del script debemos seguir los siguientes pasos.</p>
+<p>Desplegar como Aplicación web, para ello,&nbsp; haz clic en Implementar → Nueva implementación<br>Selecciona:</p>
+<p>Tipo: Aplicación web<br>Descripción: (opcional)<br>Ejecutar como: Tú<br>Quién tiene acceso: Cualquiera<br>Haz clic en Implementar</p>
+<p>4. Autorizar permisos<br>Google mostrará advertencias:</p>
+<p>Revisar permisos<br>Selecciona tu cuenta<br>Avanzado → Ir a proyecto (no seguro)<br>Permitir</p>
+<p>5. Obtener la URL pública<br>Después del despliegue, Google te dará una URL como:</p>
+<p>&nbsp;https://script.google.com/macros/s/AKfycbxxxx/exec</p>
+<p>Esa es la URL que usarás desde Arduino, navegador o Postman.</p><p class="clearfix"></p></div>
+            </div></div></div></div>
+</div></article>
+</div></main><div class="nav-buttons"> <a href="../html/bade-de-datos-mysql.html" title="Anterior" class="nav-button nav-button-left"> <span>Anterior</span></a><a href="../html/graficado-de-los-datos-php.html" title="Siguiente" class="nav-button nav-button-right"> <span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class="cc cc-by-sa"> <p> <span class="license-label">Licencia: </span><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="license">creative commons: attribution - share alike 4.0</a></p>
+</div>
+</div></footer>
+</div>
+<p id="made-with-eXe"> <a href="https://exelearning.net/" target="_blank" rel="noopener"> <span>Creado con eXeLearning <span>(nueva ventana)</span></span></a></p>
+</body>
+</html>
